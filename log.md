@@ -38,4 +38,4 @@ Thise is a major milestone as it is the first instance of passing a .mp4 file, h
 
 
 *Next Phase*
-As of now, the next step is to continue gathering demo footage to train with and then developing a system that generates annotation boxes or a heatmap that shows where the neural network is looking.
+As of now, the next step is to continue gathering demo footage in a class balanced manner. Once I reach ~1,000 snippets of demo footage I will move to training on a cloud GPU in HD quality.
