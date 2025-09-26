@@ -47,13 +47,13 @@ As of now, the next step is to continue gathering demo footage in a class balanc
 ***September 26, 2025***
 
 *Phase 1 ~July 2025*
-Implemented a stats module leveraging the newly released Leetify API. The base API provides match-level and account-level metrics such as aim rating, utility, HS%, counter-strafe success, ADR etc. along with identifiers like VAC bans, age of registration and elo. With these base statistics, further metrics were derived such as an "aim-reaction" index and "headshot-spot" index. These are just two examples of many where more in-depth statistics can reveal gameplay patterns. Ex: indexing on average how quickly it takes a player to fire a shot at the enemy's head and how frequently those are headshots. Consistently above average markers for their elo, or other high elo players could potentially raise red flags. Below are 2 images showing a few of the metric keys and raw stat output. (Keep in mind these are only about 25% of the stats that re actually derived; there are many more):
+Implemented a stats module leveraging the newly released Leetify API. The base API provides match-level and account-level metrics such as aim rating, utility, HS%, counter-strafe success, ADR etc. along with identifiers like VAC bans, age of registration and elo. With these base statistics, further metrics were derived such as an "aim-reaction" index and "headshot-spot" index. These are just two examples of many where more in-depth statistics can reveal gameplay patterns. Ex: indexing on average how quickly it takes a player to fire a shot at the enemy's head and how frequently those are headshots. Consistently above average markers for their elo, or other high elo players could potentially raise red flags. Below are 2 images showing a few of the metric keys and raw stat output. (Keep in mind these are only about 25% of the stats that are truly derived; these have been truncated for readability):
 
 ![MetricKeys](media/MetricKeys.png)
 ![Raw Output Subsample](media/RawStatOutputExample.png)
 
 
-The purpose for deriving this data is for two resons:
+Deriving this data for two resons:
 1. Allow for surface level observation of a player's performance by a rolling windowed average (Example: I want to see this user's average spot-reaction time for the past 40 matches).
 2. Leverage these points of data as features for machine learning to classify the chance of a player potentially cheating. This will use XGBoost.
 
