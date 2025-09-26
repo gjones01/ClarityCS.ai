@@ -47,7 +47,11 @@ As of now, the next step is to continue gathering demo footage in a class balanc
 ***September 26, 2025***
 
 *Phase 1 ~July 2025*
-Implemented a stats module leveraging the newly released Leetify API. The base API provides match-level and account-level metrics such as aim rating, utility, HS%, counter-strafe success, ADR etc. along with identifiers like VAC bans, age of registration and elo. With these base statistics, further metrics were derived such as an "aim-reaction" index and "headshot-spot" index. These are just two examples of many where more in-depth statistics can reveal gameplay patterns. Ex: indexing on average how quickly it takes a player to fire a shot at the enemy's head and how frequently those are headshots. Consistently above average markers for their elo, or other high elo players could potentially raise red flags. 
+Implemented a stats module leveraging the newly released Leetify API. The base API provides match-level and account-level metrics such as aim rating, utility, HS%, counter-strafe success, ADR etc. along with identifiers like VAC bans, age of registration and elo. With these base statistics, further metrics were derived such as an "aim-reaction" index and "headshot-spot" index. These are just two examples of many where more in-depth statistics can reveal gameplay patterns. Ex: indexing on average how quickly it takes a player to fire a shot at the enemy's head and how frequently those are headshots. Consistently above average markers for their elo, or other high elo players could potentially raise red flags. Below are 2 images showing a few of the metric keys and raw stat output. (Keep in mind these are only about 25% of the stats that re actually derived; there are many more):
+
+![MetricKeys](media/MetricKeys.png)
+![Raw Output Subsample](media/RawStatOutputExample.png)
+
 
 The purpose for deriving this data is for two resons:
 1. Allow for surface level observation of a player's performance by a rolling windowed average (Example: I want to see this user's average spot-reaction time for the past 40 matches).
@@ -65,10 +69,10 @@ Each iteration is based off of previous attempts with it eventually converging o
 
 
 *Phase 2 ~August 2025*
-I began my journey in building a website with the goal being a onestop shop for an individual to look up player statistics via SteamID64 and a place to eventually host the computer vision model. I have never built a website before, so I am self-pacing myself through web development courses online since it is something I've always wanted to learn. Therefore, it is a "build as I go" methodology at the moment. However, I have a skeleton of the landing page as seen below. This will certainly not be hte final product but definitely a start:
+I began my journey in building a website with the goal being a onestop shop for an individual to look up player statistics via SteamID64 and a place to eventually host the computer vision model. I've never built a website before, so I'm self-pacing myself through web development courses online since it is something I've always wanted to learn. Therefore, "build as I go" is the methodology at the moment. However, there I have constructed a skeleton for the landing page as seen below. This will certainly not be the final product but definitely a start:
 
 ![Landing Page Skeleton](media/landingskeleton.gif)
 
 
-Update about computer vision model: I usual, the last hurdle with the computer vision portion of ClarityCS is the data collection. Training should not be a major obstacle, thanks to the accessibility of cloud GPUs. I will keep people posted on any major updates that happen regarding that.
+Update regarding CV Model: As usual, the last hurdle with the computer vision portion of ClarityCS is the data collection. Training should not be a major obstacle since the pipeline has been built. I will keep people posted on any major updates that happen regarding that.
 
