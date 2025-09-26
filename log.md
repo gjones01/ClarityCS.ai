@@ -1,4 +1,4 @@
-June 25th, 2025
+***June 25th, 2025***
 
 **Changes & Updates**
 
@@ -39,3 +39,36 @@ Thise is a major milestone as it is the first instance of passing a .mp4 file, h
 
 *Next Phase*
 As of now, the next step is to continue gathering demo footage in a class balanced manner. Once I reach ~1,000 snippets of demo footage I will move to training on a server-side GPU in HD quality.
+
+
+
+
+
+***September 26, 2025***
+
+*Phase 1 ~July 2025*
+Implemented a stats module leveraging the newly released Leetify API. The base API provides match-level and account-level metrics such as aim rating, utility, HS%, counter-strafe success, ADR etc. along with identifiers like VAC bans, age of registration and elo. With these base statistics, further metrics were derived such as an "aim-reaction" index and "headshot-spot" index. These are just two examples of many where more in-depth statistics can reveal gameplay patterns. Ex: indexing on average how quickly it takes a player to fire a shot at the enemy's head and how frequently those are headshots. Consistently above average markers for their elo, or other high elo players could potentially raise red flags. 
+
+The purpose for deriving this data is for two resons:
+1. Allow for surface level observation of a player's performance by a rolling windowed average (Example: I want to see this user's average spot-reaction time for the past 40 matches).
+2. Leverage these points of data as features for machine learning to classify the chance of a player potentially cheating. This will use XGBoost.
+
+XGBoost has been a superior method for predictive modeling due to the fact it's a self correcting algorithm. Unlike Random Forests or Extra Trees, XGBoost sequentially builds each tree. In simplest terms, this is how it works:
+
+You are trying to predict a hidden number.
+i. You make an initial guess that is incorrect
+ii. Instead of guessing again you ask whether it is too low or too high
+iii. Now you guess again, but with the intention of getting closer based on the feedback from step 2.
+iv. Repeat steps 1-3 tens, hundreds, thousands or millions of times.
+
+Each iteration is based off of previous attempts with it eventually converging on the correct value. In implementation, if the model is well balanced, it could reliably see new player data and infer their status. If you are interested in reading more about the theory behind XGBoost and why it is so powerful, I suggest this study from 2019 --> [**XGBoost**](https://arxiv.org/pdf/1911.01914).
+
+
+*Phase 2 ~August 2025*
+I began my journey in building a website with the goal being a onestop shop for an individual to look up player statistics via SteamID64 and a place to eventually host the computer vision model. I have never built a website before, so I am self-pacing myself through web development courses online since it is something I've always wanted to learn. Therefore, it is a "build as I go" methodology at the moment. However, I have a skeleton of the landing page as seen below. This will certainly not be hte final product but definitely a start:
+
+![Landing Page Skeleton](media/landingskeleton.gif)
+
+
+Update about computer vision model: I usual, the last hurdle with the computer vision portion of ClarityCS is the data collection. Training should not be a major obstacle, thanks to the accessibility of cloud GPUs. I will keep people posted on any major updates that happen regarding that.
+
