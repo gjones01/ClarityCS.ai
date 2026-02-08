@@ -57,27 +57,7 @@ So the plan is:
 
 ---
 
-## Repo structure (high-level)
-
-- `Tick Level/` — tick parsing + inspection scripts
-- `Plots/` — distribution plots and comparisons
-- `datasets/` — parquet datasets (local, not committed)
-- `raw_parsed/` / `parsed_zips/` — parsed outputs from demos
-- `tris/` — AWPy triangle files / map data used for visibility work
-- `TestDemosAnalysis/` — scratch experiments / validation scripts
-
-*(Folders shift as the pipeline gets cleaner.)*
-
----
-
-## Roadmap (realistic)
-
-- [ /] finalize a consistent parsing config (events + player props)
-- [ /] generate windows around kills at scale (pro + normal)
-- [ /] build “player vectors” (per SteamID) for modeling
-- [ ] add a small cheater set and test whether signals differ from pro baselines
-- [ ] publish cleaner notebooks + writeups of what actually worked
-
+At the end of the day, I'm just a guy that likes playing CS2 and got fed up playing against tons of cheaters. Curiosity led me here.
 ---
 
 ## Notes
