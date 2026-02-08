@@ -76,3 +76,15 @@ I began my journey in building a website with the goal being a onestop shop for 
 
 Update regarding CV Model: As usual, the last hurdle with the computer vision portion of ClarityCS is the data collection. Training should not be a major obstacle since the pipeline has been built. I will keep people posted on any major updates that happen regarding that.
 
+
+
+***Feb 8, 2026***
+So alot has changed since the last update. After trial and error with different methods I've settled on a promising one that has presented so promising signs. I previously disregarded demo parsers due to the initial method of computer vision that I was going for. However, I went back and came across AWPY, a demo parsing tool created by pnxenopoulos. It can be found here [AWPY](https://github.com/pnxenopoulos/awpy). This parsing tool extracts subtick level events from demo files such as weapon fired, XYZ of players, damage and health just to scratch the surface. What makes this tool extremely powerful is the .tri file configuration for mesh/collision data for every map in CS2. What this is traditionally used for is programs to see matches from a skybox view or extract map data with services such as Leetify. I was able to leverage this same tool to be able to create functions that can determine whether a player was visible on the screen during a kill. I have functions that create a vector from the shooter's eye level. If that vector intersects with the collision data, the enemy is behind cover. If that vector intersects with the surface area of the enemy, that means they are visible. This logic will be useful down the road with modeling ESP cheats.
+
+As of right now I have analyzed 2 types of players: pros and "normal". 100 HLTV/FaceIt demos from pro players were extracted and parsed using AWPY. ~15,000 kills were tabulated alongside 100 Faceit demos of "normal players" ranging anywhere from Faceit lvl 2 to lvl 8. ~15,000 kills were tabulated from that as well. Subtick level windows were created around each kill event from all of these matches with calculations of their "aim error". The manner in how this was calculated wasn't important, so I'll show some of the insights drawn.
+
+![Models](Screenshot 2026-02-08 171907.png)
+
+Essentially, this data isn't telling us anything truly ground breaking. Shocker, pros are more accurate than normal players. That wasn't the entire point however. This helped weed out useful (and even useless) features to look at when it comes to machine learning. Also, this is specifically only related to crosshair behavior on an event level. Currently I am doing this for a tick level. So soon we will be able to trace aim error and their percentiles over the course of a 2 second window during a kill. The entire point for this portion of the project is identifying triggerbot, aimbot, aim assist and even recoil assist. ESP cheats will be the last thing I tackle.
+
+For now those are the only updates I currently have. My schedule is unpredictable at times but I've had more time recently to sink back into this project.
