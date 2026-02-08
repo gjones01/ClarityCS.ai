@@ -83,7 +83,7 @@ So alot has changed since the last update. After trial and error with different 
 
 As of right now I have analyzed 2 types of players: pros and "normal". 100 HLTV/FaceIt demos from pro players were extracted and parsed using AWPY. ~15,000 kills were tabulated alongside 100 Faceit demos of "normal players" ranging anywhere from Faceit lvl 2 to lvl 8. ~15,000 kills were tabulated from that as well. Subtick level windows were created around each kill event from all of these matches with calculations of their "aim error". The manner in how this was calculated wasn't important, so I'll show some of the insights drawn.
 
-![Models](Screenshot 2026-02-08 171907.png)
+![Models](Plots1.png)
 
 Essentially, this data isn't telling us anything truly ground breaking. Shocker, pros are more accurate than normal players. That wasn't the entire point however. This helped weed out useful (and even useless) features to look at when it comes to machine learning. Also, this is specifically only related to crosshair behavior on an event level. Currently I am doing this for a tick level. So soon we will be able to trace aim error and their percentiles over the course of a 2 second window during a kill. The entire point for this portion of the project is identifying triggerbot, aimbot, aim assist and even recoil assist. ESP cheats will be the last thing I tackle.
 
