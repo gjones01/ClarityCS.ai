@@ -1,24 +1,93 @@
 # ClarityCS
-**Computer Vision cheat detection utilizing Deep Learning.**
 
-Clarity is an experimental, research-driven project using Deep Learning and computer vision to detect suspicious gameplay behavior for Counter Strike 2:
-- Aimbotting
-- Wallhacking
-- Unnatural flicks/corsshair movement
+ClarityCS is my research project for **detecting suspicious Counter-Strike 2 behavior using structured demo data** (not screen capture).  
+The goal is to turn `.dem` files into **clean, model-ready datasets** and explore signals that differentiate:
 
-Modern cheats utilize exploits such as DLL file manipulation to inject scripts into the game code. The theory behind Clarity is to create a Neural Network that watches game footage. Rather than looking at raw game data (which can be manipulated), analyze the pixels on the screen. There is very limited literature on using computer vision on raw video input. However, cheat developers are already ahead of the curve, utilizing computer vision for real time aimbots that 100% bypass traditional anti-cheat systems such as Ricochet Anti-Cheat. If it can be used to develope cheats, there is a way to leverage it for detecting them. This project is not intended to be a fully fledged anticheat software, but rather a tool that can potentially identify cheaters that have been known to plague Counter-Strike.
+- normal matchmaking / FACEIT-level play  
+- professional-level play  
+- (eventually) cheating patterns like aim assistance, recoil scripts, and information advantage
 
-In conjunction with this, Clarity derives even more granular statistics (with base stats being sourced form the Leetify API) which aims to further identify irregular play. Anti-cheats can be bypassed, AI video models can potentially be spoofed, but the stat line is unchanging. Whether it is rage spinbotting or GenAI recoil patterns to fool video models; anomalous reaction times, aim indexes, recoil accuracy and numerous other values will be revealed.
-
-This repository will act as a public space for updates, research notes, model performance and dev logs. Currently, there is a ReadME (this) and an architecture file that goes over the basic structure of my current model without going into too much detail. Finally there is a picture folder where I will be updating a lot more images of progress being made lately. I will sparingly share small portions of actual source code, due to the fact this is experimental. However, when appropriate, I will showcase anything of interest. 
-
-This is a passion project I do in my spare time, so there is no specific timeline at the moment for releasing a Beta.
-
-🔒 Source code is currently private while development is in progress.  
-📈 Stay tuned for results, benchmarks, and visualizations.
+This repo is where I keep my parsing pipeline, experiments, and visualizations as the project evolves.
 
 ---
-**Developer:** [@gjones01](https://github.com/gjones01)  
-**Instagram:** [@clearvision.ai](https://instagram.com/clearvision.ai) 
+
+## What this project is (right now)
+
+### Demo Dataset pipeline
+I’m building a repeatable pipeline that:
+1. parses CS2 demos (currently using **AWPy / demoparser2**)
+2. produces **event-level + tick-level** outputs (parquet)
+3. generates **windowed features** around key moments (especially kills)
+4. compares distributions across cohorts (ex: **pro vs normal**)
+
+### Early analytics / sanity checks
+I’m validating metrics visually before doing serious ML:
+- aim-related error distributions (baseline separation)
+- visibility/engagement context (line-of-sight style signals)
+- “window” summaries around kills (pre/post context)
+
+---
+
+## What this project is NOT
+- Not a finished anti-cheat
+- Not claiming “I can detect all cheaters”
+- Not a tool meant to accuse individual players
+
+This is **research + tooling** focused on building reliable datasets and testing hypotheses.
+
+---
+
+## Current direction
+
+### 1) Baselines first: Pro vs Normal
+Before touching “cheater detection,” I’m establishing what *legit high-skill* looks like.  
+If we can’t separate *normal vs pro* reliably (or understand the overlap), detecting cheats becomes noise.
+
+### 2) Window + tick analysis
+Instead of only looking at one datapoint at the kill moment, I’m moving toward:
+- **64 ticks pre / 64 ticks post** windows (≈ 1s before/after)
+- time-series features like: stabilization → target acquisition → shot timing → correction patterns
+
+### 3) Player-level vectors (later)
+Cheater demos are messy because usually only 1–2 players cheat per lobby.  
+So the plan is:
+- build **player-specific** feature vectors using attacker/victim SteamIDs
+- aggregate across a match (or multiple matches) per player
+- model “suspicion” rather than “this lobby is cheating”
+
+---
+
+## Repo structure (high-level)
+
+- `Tick Level/` — tick parsing + inspection scripts
+- `Plots/` — distribution plots and comparisons
+- `datasets/` — parquet datasets (local, not committed)
+- `raw_parsed/` / `parsed_zips/` — parsed outputs from demos
+- `tris/` — AWPy triangle files / map data used for visibility work
+- `TestDemosAnalysis/` — scratch experiments / validation scripts
+
+*(Folders shift as the pipeline gets cleaner.)*
+
+---
+
+## Roadmap (realistic)
+
+- [ /] finalize a consistent parsing config (events + player props)
+- [ /] generate windows around kills at scale (pro + normal)
+- [ /] build “player vectors” (per SteamID) for modeling
+- [ ] add a small cheater set and test whether signals differ from pro baselines
+- [ ] publish cleaner notebooks + writeups of what actually worked
+
+---
+
+## Notes
+CS2 demos and parsing libraries change over time. If something breaks after game updates, I usually pin versions or adjust the parser config.
+
+---
+
+## Developer
+**Gerry Jones**  
+GitHub: https://github.com/gjones01  
+Instagram: https://instagram.com/clearvision.ai
 
 
