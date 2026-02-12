@@ -1,6 +1,6 @@
-# ClarityCS
+#NullCS
 
-ClarityCS is my research project for **detecting suspicious Counter-Strike 2 behavior using structured demo data** (not screen capture).  
+NullCS is my research project for **detecting suspicious Counter-Strike 2 behavior using structured demo data** (not screen capture).  
 The goal is to turn `.dem` files into **clean, model-ready datasets** and explore signals that differentiate:
 
 - normal matchmaking / FACEIT-level play  
@@ -68,6 +68,6 @@ CS2 demos and parsing libraries change over time. If something breaks after game
 ## Developer
 **Gerry Jones**  
 GitHub: https://github.com/gjones01  
-Instagram: https://instagram.com/clearvision.ai
+Instagram: https://instagram.com/nullcs.ai
 
 
